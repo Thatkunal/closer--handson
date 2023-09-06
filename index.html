@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>closer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    p{
+        background-color: green;
+        font-size: 2rem;
+    }
+    span{
+        background-color: green;
+        font-size: 2rem;
+    }
+    
+   
+</style>
+<body>
+            <h2>Q-1<pre>
+             function counter(){
+            var counter = 0;
+                function IncreaseCounter() {
+                    return counter += 1;
+                    };
+                return IncreaseCounter;
+                    }    
+            var a = counter();
+            alert(a());
+            alert(a());
+            alert(a());
+            alert(a());
+                </pre>
+            </h2>
+            <p>
+                ans:- <br> 1 <br> 2 <br> 3 <br> 4 <br>
+
+                The code creates a closure with a private counter variable. Each time the counter() function is called, it returns a reference to the IncreaseCounter() function, which increments the private counter and returns its value. The successive calls to counter() result in the displayed output of 1, 2, 3, and 4.
+
+            </p>
+    
+            <h2>Q-2<pre>
+                let count = 0;
+                    (function () {
+                      if (count === 0) {
+                        let count = 1;
+                        console.log(count); // What is logged?
+                      }
+                      console.log(count); // What is logged?
+                    })();</pre>
+            </h2>
+          <p>ams:-The output will be 1 and 0. <br> The code declares two separate variables named count with different scopes: one is declared globally with the value 0, and another is declared inside an IIFE with the value 1. When logging count inside the IIFE, it outputs 1, but outside the IIFE (in the global scope), it outputs 0.</p>
+         
+            <h2>Q-3<pre>
+                    for(var i = 0; i<3; i++){
+                        setTimeout(()=>{
+                            console.log(i)
+                        }, 1000)
+                    }
+                </pre>
+            </h2>
+            <p>ans:- The Output will be: 3 3 3;<br>
+                The code uses a for loop to schedule three setTimeout callbacks. When the callbacks are executed after a delay of 1000 milliseconds, they log the value of the shared variable i, which will be 3 in all three callbacks due to closure behavior, as var has function-level scope and does not create a new scope for each iteration.</p>
+        
+            <h2>Q-4  Write a code to calculate area of a rectangle using inner function. In this case outer function should accept parameter length and inner function should accept parameter breadth.
+            </h2>
+           <span> <p><pre>ans:- function calculateArea(length) {
+
+                function calculateRectangleArea(breadth) {
+                  return length * breadth;
+                }
+                r  eturn calculateRectangleArea;
+              }
+             </pre></p></span>
+        
+            <h2>Q-5   Take a variable in outer function and create an inner function to increase the counter every time it is called
+            </h2>
+          <span ><p> <pre>ans:-
+                function outer(){
+                    let a = 0;
+                     function inner(){
+                         for(a = 0; a < 10 ; a++){
+                             console.log(a)
+                         }
+                     }
+                     return inner()
+                }
+                console.log(outer())
+            </pre></p></span>
+        
+            <h2>Q-6 
+                <pre>"Print Output
+                    var a = 12;
+                    (function () {
+                      alert(a);
+                    })();"</pre>
+            </h2>
+            <p>
+                ans:- 12; <br>This is a self invoking function which is called just after its declaration. Here in, there is a vartiable declared with var keyword with value "12" and simply it is called inside self invoking function.
+            </p>
+         
+            <h2>Q-7
+                <pre>"var a = 10;
+                    var x = (function () {
+                      var a = 12;
+                      return function () {
+                        alert(a);
+                      };
+                    })();
+                    x();"</pre>
+            </h2>
+            <p>
+              ans:-  The output will be 12 because "alert(a)" is following the lexical environment and taking the value of 'a' from its parent function. This is a first class functiopn because it is declared inside a variable and is also returning a function. The scenario is there is a variable whose value is a self invoke function whose return value is also a function which alerts the value of "a" which is declared in the parent function.
+            </p>
+
+        <h2>Q-8
+            <pre>
+            var globalVar = "xyz";
+
+        (function outerFunc(outerArg) {
+        var outerVar = 'a';
+
+         (function innerFunc(innerArg) {
+         var innerVar = 'b'; 
+         console.log(
+        "outerArg = " + outerArg + "\n" +
+        "innerArg = " + innerArg + "\n" +
+        "outerVar = " + outerVar + "\n" +
+        "innerVar = " + innerVar + "\n" +
+        "globalVar = " + globalVar);
+            })(456)    
+            })(123)
+        </pre>
+        </h2>
+
+        <p>
+        ans:- <br>
+        outerArg = 123 <br>
+        innerArg = 456 <br>
+        outerVar = a<br>
+        innerVar = b<br>
+        globalVar = xyz<br><br>
+        The code demonstrates nested functions with different scopes. The outer function outerFunc takes an argument outerArg and defines a variable outerVar inside its scope. The inner function innerFunc, which is nested inside outerFunc, takes an argument innerArg and defines a variable innerVar inside its scope. When executed, the inner function logs the values of outerArg, innerArg, outerVar, innerVar, and globalVar (which is defined in the global scope) to the console</p>
+
+
+</body>
+</html>
